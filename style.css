@@ -1,0 +1,19 @@
+body{background-color: black;}
+.text {
+    text-align: center;
+    padding: 18px;
+    color: white;
+}
+.text {
+    display: inline;
+}
+header 
+ { background: linear-gradient(to right, #300036, #000029);
+    padding: 40px;
+    text-align: center;
+    color: white;
+
+    border-radius: 20px;
+}
+p1 {color: white}
+
