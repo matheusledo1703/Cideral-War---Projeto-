@@ -476,3 +476,105 @@ footer {
         color: white;
     }
 }
+
+@media (max-width: 768px) {
+    * {
+        scroll-padding-top: 200px;
+        box-sizing: border-box; /* evita que padding quebre a largura */
+    }
+
+    body {
+        overflow-x: hidden; /* remove rolagem lateral */
+    }
+
+    header {
+        width: 100%;
+        padding: 10px;
+        overflow-x: hidden;
+    }
+
+    .a_fora_nav {
+        text-decoration: none;
+        color: #00E5FF;
+        text-align: center;
+        float: none; /* remove float */
+        display: block;
+        padding: 15px;
+        font-size: 28px;
+        font-family: "Pixelify Sans";
+        font-weight: 400;
+    }
+
+    nav {
+        float: none;
+        text-align: center;
+    }
+
+    nav ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+        display: block;
+        padding: 10px;
+    }
+
+    nav ul li a {
+        text-align: center;
+        display: block;
+        padding: 10px;
+    }
+
+
+    main {
+    #home {
+        
+         .grid_home {
+            display: grid;
+        grid-template-columns: 100%;
+        margin-top: 150px;
+        img {
+            text-align: center;
+        }
+    }
+}
+    }
+
+    #home .coluna_imagemhome {
+        margin-left: 0;
+    }
+
+    
+    #jogar .grid_jogar {
+        grid-template-columns: 100%;
+    }
+
+    #jogar .coluna_jogo iframe {
+        width: 100%;
+        height: auto;
+    }
+
+    #jogar .coluna_elementos .dupla_principais,
+    #jogar .coluna_elementos .dupla_boss,
+    #jogar .coluna_elementos .dupla_especiais {
+        grid-template-columns: 100%;
+    }
+
+    
+    #contatos .grid_contatos {
+        grid-template-columns: 100%;
+    }
+
+    
+    .grid_seta_descer .coluna_seta {
+        left: auto;
+        right: 10px;
+        font-size: 32px;
+    }
+
+    footer {
+        font-size: 20px;
+        padding: 15px;
+    }
+}
