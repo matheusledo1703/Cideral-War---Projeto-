@@ -69,7 +69,7 @@ body {
 
     .a_fora_nav {
         text-decoration: none;
-        color: rgb(255, 255, 255);
+        color: #00E5FF;
         text-align: center;
         float: left;
         padding: 30px;
@@ -89,7 +89,7 @@ body {
                 a {
                     text-align: center;
                     text-decoration: none;
-                    color: white;
+                    color: #00E5FF;
                     padding: 10px;
                     float: right;
                     font-size: 20px;
