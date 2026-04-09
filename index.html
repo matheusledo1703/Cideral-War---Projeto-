@@ -27,23 +27,19 @@
 <body>
 <header>
     <a class="a_fora_nav" href="index.html" title="Página Inicial">Cideral War</a>
-    <nav> 
-        <ul>
-            <li> 
-                <a href="#home">Home</a>
-            </li>
-            <li>
-                <a href="#sobre_o_jogo">Sobre o jogo</a>
-            </li>
-            <li>
-                <a href="#jogar">Jogar</a>
-            </li>
-    
-            <li>
-                <a href="#contatos">Contatos</a>
-            </li>
-        </ul>
-    </nav>
+   <nav> 
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#sobre_o_jogo">Sobre o jogo</a></li>
+    <li><a href="#jogar">Jogar</a></li>
+    <li><a href="#contatos">Contatos</a></li>
+    <li><button onclick="trocarTema()">🌙 / ☀️</button></li>
+  </ul>
+</nav>
+
+
+     
+
 </header>
 
 <main>
@@ -53,7 +49,8 @@
             <div class="coluna_home">
     <p>O jogo Cideral War é um jogo minimalista, criado para quem busca praticidade. Você não precisa baixar aplicativos ou se preocupar com atualizações.</p>
     <p>É direto, rápido e no estilo clássico dos arcade games: simples de jogar, mas desafiador de dominar. Prepare-se para a ação!</p>
-    <p>Um arcade retrô com pegadas modernas, trazendo a nostalgia dos clássicos, mas com a agilidade e fluidez que você espera hoje</p>
+    <p>Um arcade retrô com pegadas modernas, trazendo a nostalgia dos clássicos, mas com a agilidade e fluidez que você espera hoje!</p>
+   <a class="botao_home_jogar" href="#jogar">Jogar agora!</a>
             </div>
             <div class="coluna_imagemhome">
                     <img src="IMG/Captura de tela 2026-04-05 163005.png" alt="Tela do Jogo">
@@ -104,13 +101,27 @@
                     -- Mover para baixo --</h5>
                 </div>
                 </div>
-            
-                
-            <div class="coluna_jogo">
-                    <h3>Jogo</h3>
-                   <Iframe src="https://cideralwar.netlify.app/"></Iframe>
-                </div>
+                            
+           <div class="coluna_jogo">
+    <h3>Jogo</h3>
 
+    <div class="container_jogo">
+        
+        <!-- Overlay clicável -->
+        <div id="overlay" onclick="iniciarJogo()">
+            <h2>🎮 Clique para Jogar</h2>
+        </div>
+
+        <!-- Iframe -->
+        <iframe 
+            id="meuJogo"
+            src="https://cideralwar.netlify.app/"
+            allowfullscreen>
+        </iframe>
+
+    </div>
+</div>
+                
             <div class="coluna_elementos">
                 <h3>Personagens</h3>
                 <div class="dupla_principais">
@@ -137,7 +148,7 @@
                 <div class="dupla_especiais">
                 <div class="explosivo">
                 <img class="imgmina" src="IMG/mine_12_01.png" alt="Explosivo inimigo">
-                <h5>Explosivo alienígena</h5>
+                <h5 div="explosivo_h5">Bomba Alien</h5>
                 </div>
                 <div class="energia">
                 <img class="imgenergia" src="IMG/energia.png" alt="Energia para atirar">
@@ -190,12 +201,46 @@ window.addEventListener("scroll", function() {
 </script>
      </section>
      
-
 </main>
 <footer>
     <a href="https://www.instagram.com/matheusledo__/" target="_blank" class="footer_instagram"><i class="fa-brands fa-instagram"></i> </a>
     <a href="https://www.facebook.com/matheus.ledo.568/" target="_blank"  class="footer_facebook"><i class="fa-brands fa-facebook"></i></a>
     <a href="https://www.tiktok.com/@math_ledo" target="_blank" class="footer_tiktok"><i class="fa-brands fa-tiktok"></i></a>
 </footer>
+
+<script>
+function iniciarJogo() {
+    let iframe = document.getElementById("meuJogo");
+    let overlay = document.getElementById("overlay");
+
+    // entra em tela cheia
+    if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+    }
+
+    // esconde overlay
+    overlay.style.display = "none";
+}
+
+// 👇 DETECTA SAÍDA DO FULLSCREEN (ESC)
+document.addEventListener("fullscreenchange", function() {
+    if (!document.fullscreenElement) {
+        resetarJogo();
+    }
+});
+
+// 👇 FUNÇÃO DE RESET
+function resetarJogo() {
+    let iframe = document.getElementById("meuJogo");
+    let overlay = document.getElementById("overlay");
+
+    // reinicia o iframe (recarrega o jogo)
+    iframe.src = iframe.src;
+
+    // mostra novamente a tela inicial
+    overlay.style.display = "flex";
+}
+</script>
+
 </body>
-</html>                                                      
+</html>                          

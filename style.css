@@ -1,8 +1,21 @@
 * {
-    margin: 0;
+    margin: 0; 
     padding: 0;
     scroll-behavior: smooth;
     scroll-padding-top: 150px;
+}
+
+@keyframes piscar {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
    
     ::-webkit-scrollbar {
     width: 12px; 
@@ -21,6 +34,7 @@
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(21, 255, 0);
+    border: 3px solid rgb(5, 60, 0);
 }
     a:hover {
             color: rgb(21, 255, 0);
@@ -33,7 +47,8 @@
              color: rgb(21, 255, 0);
             .fa-brands.fa-whatsapp {
                 color: rgb(21, 255, 0);
-                 border: 1px solid rgb(21, 255, 0);
+                 border: rgb(21, 255, 0);
+                 
             }
 
     }
@@ -42,19 +57,39 @@
              color: rgb(21, 255, 0);
             .fa-regular.fa-envelope {
                 color: rgb(21, 255, 0);
+
             }
 
     }
 
-
-    }
-    i:hover {
+    .fa-brands.fa-instagram:hover {
         color: rgb(21, 255, 0);
     }
+
+    .fa-brands.fa-facebook:hover {
+        color: rgb(21, 255, 0);
+    }
+
+    .fa-brands.fa-tiktok:hover {
+        color: rgb(21, 255, 0);
+    }
+
+    
     .a_fora_nav:hover {
         color: rgb(21, 255, 0);
     }
+    #home{
+     .grid_home{
+     .coluna_home {
+     .botao_home_jogar:hover {
+        border: 1px solid rgb(21, 255, 0);
+         color: rgb(21, 255, 0);
+     }
+    }
+}
+    }
 
+    
 
 body {
     background-color: #010612;
@@ -63,9 +98,12 @@ body {
  header {
     background-color: black ;
     position: fixed;
+    top: 0;
+    z-index: 10000;
     width: 100%;
     padding: 20px;
     margin-bottom: 20px;
+    z-index: 9999;
 
     .a_fora_nav {
         text-decoration: none;
@@ -78,28 +116,47 @@ body {
         font-weight: 400;
         
     }
-    nav {
-        
-        float: right;
-        ul {
-            list-style: none;
-            li {
-                display: inline-block;
-                padding: 25px;
-                a {
-                    text-align: center;
-                    text-decoration: none;
-                    color: #00E5FF;
-                    padding: 10px;
-                    float: right;
-                    font-size: 20px;
-                    font-family: "Pixelify Sans";
-                    font-weight: 400;         
-                }
+   nav {
+  float: right;
 
-            }
-        }
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+      padding: 25px;
+
+      a {
+        text-align: center;
+        text-decoration: none;
+        color: #ffffff;
+        padding: 5px;
+        font-size: 17px;
+        font-family: "Pixelify Sans";
+        font-weight: 400;
+        vertical-align: middle; 
+      }
+
+      button {
+        all: unset; /* remove TUDO do botão */
+    
+    display: inline-block;
+    padding: 7px 14px;
+    
+    background-color: var(--primary);
+    color: var(--text);
+    
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: inherit;
+    background-color: #020d27;
+    border: 1px solid white;
+    color: white;
+        
+      }
     }
+  }
+}
  }
 
  main {
@@ -147,11 +204,31 @@ body {
     .coluna_home {
         border-top: 1px solid white;
         border-bottom: 1px solid white;
-        padding: 40px;
-        padding-top: 70px;
+        padding: 10px;
+        padding-top: 30px;
         text-align: justify;
         padding-left: 20px;
         padding-right: 20px;
+
+        .botao_home_jogar {
+                margin-top: 30px;
+                display: block;
+                border: 1px solid #00E5FF;
+                background-color: #04153e;
+                color: #00E5FF;
+                border-radius: 20px;
+                font-family: "Press Start 2P";
+                font-size: 20px;
+                padding: 40px;
+                text-align: center;
+                text-decoration: none;
+                animation: piscar 1.5s infinite;
+                 box-shadow: 0 0 10px #00E5FF,
+                0 0 20px #00E5FF,
+                0 0 40px #00E5
+}
+
+
     }
 
     .coluna_imagemhome {
@@ -163,7 +240,7 @@ body {
         text-align: center;
         background-color: #020d27;
         img {
-            width: 80%;
+            width: 100%;
             height: auto;
             text-align: center;
             border-radius: 20px;
@@ -177,6 +254,13 @@ body {
     
         display: grid;
         grid-template-columns: 100%;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        text-align: justify;
+        padding: 30px;
+        margin-right: 20px;
+        margin-left: 20px;
+
 
         }
         }
@@ -238,6 +322,35 @@ body {
 
 
         .coluna_jogo {
+        position: relative;
+
+        #overlay {
+     border: 1px solid #00E5FF;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96.5%;
+    max-width: 854px;
+    height: 480px;
+    padding: 2px;
+    margin-top:  52px;
+    margin-left: 7px;
+
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 28px;
+    cursor: pointer;
+
+    z-index: 5;
+
+    
+}
 
             iframe {
                 border: 1px solid white;
@@ -247,9 +360,9 @@ body {
                 height: 480px;
                 border-radius: 10px;
                 padding: 2px ;
+                margin-left: 7px;
 }
             }
-        }
 
             .coluna_elementos {
                 .dupla_principais{
@@ -339,7 +452,6 @@ body {
                      letter-spacing: 2px;
                     font-size: 15px;
                     color: white;
-
                 }
 
                 img {
@@ -379,6 +491,7 @@ body {
                 .imgmina {
                       width: 40%;
                     height: auto;
+                    padding-bottom: 12px;
                     text-align: center;
                 }
 
@@ -386,16 +499,18 @@ body {
                       width: 30%;
                     height: auto;
                     text-align: center;
+                    padding: 3px;
                 }
                 
             }
-        }              
-    
+        }   
+
+    }
 
 
-
-#contatos {
+    #contatos {
     background-color: #010612;
+
 
     .a_contatos_whatsapp {
         text-decoration: none;
@@ -422,7 +537,7 @@ body {
                 border: 1px solid rgb(255, 255, 255);
                 background-color: #010612;
                 border-radius: 10px;
-                margin: 10px;
+                margin: 20px;
                 text-align: center;
                 padding: 40px;
                 font-size: 20px;
@@ -437,10 +552,10 @@ body {
         text-align: right;
         position: fixed;
         bottom: 20px;
-        left: 97.7%;
+        left: 98%;
         
 
-        font-size: 48px;   
+        font-size: 24px;   
         color: #00E5FF;
         z-index: 1000;
 
@@ -477,104 +592,4 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    * {
-        scroll-padding-top: 200px;
-        box-sizing: border-box; /* evita que padding quebre a largura */
-    }
-
-    body {
-        overflow-x: hidden; /* remove rolagem lateral */
-    }
-
-    header {
-        width: 100%;
-        padding: 10px;
-        overflow-x: hidden;
-    }
-
-    .a_fora_nav {
-        text-decoration: none;
-        color: #00E5FF;
-        text-align: center;
-        float: none; /* remove float */
-        display: block;
-        padding: 15px;
-        font-size: 28px;
-        font-family: "Pixelify Sans";
-        font-weight: 400;
-    }
-
-    nav {
-        float: none;
-        text-align: center;
-    }
-
-    nav ul {
-        padding: 0;
-        margin: 0;
-    }
-
-    nav ul li {
-        display: block;
-        padding: 10px;
-    }
-
-    nav ul li a {
-        text-align: center;
-        display: block;
-        padding: 10px;
-    }
-
-
-    main {
-    #home {
-        
-         .grid_home {
-            display: grid;
-        grid-template-columns: 100%;
-        margin-top: 150px;
-        img {
-            text-align: center;
-        }
-    }
-}
-    }
-
-    #home .coluna_imagemhome {
-        margin-left: 0;
-    }
-
-    
-    #jogar .grid_jogar {
-        grid-template-columns: 100%;
-    }
-
-    #jogar .coluna_jogo iframe {
-        width: 100%;
-        height: auto;
-    }
-
-    #jogar .coluna_elementos .dupla_principais,
-    #jogar .coluna_elementos .dupla_boss,
-    #jogar .coluna_elementos .dupla_especiais {
-        grid-template-columns: 100%;
-    }
-
-    
-    #contatos .grid_contatos {
-        grid-template-columns: 100%;
-    }
-
-    
-    .grid_seta_descer .coluna_seta {
-        left: auto;
-        right: 10px;
-        font-size: 32px;
-    }
-
-    footer {
-        font-size: 20px;
-        padding: 15px;
-    }
-}
+      
