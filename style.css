@@ -3,6 +3,35 @@
     padding: 0;
     scroll-behavior: smooth;
     scroll-padding-top: 150px;
+    
+}
+
+
+:root {
+    /* ===== MODO CLARO ===== */
+    --background: #456085;
+    --text: #ffffff;
+
+    --primary: #3d4863;
+    --secondary: #4C586B;
+
+     --section-dark: #2f3a52;
+
+
+}
+
+body.dark {
+    /* ===== MODO ESCURO ===== */
+    --background: #01091c;
+    --text: #ffffff;
+
+    --primary: #02000b;
+    --secondary: #000000;
+
+    --border: #ffffff;
+    --accent: #00E5FF;
+
+     --section-dark: #03112e;
 }
 
 @keyframes piscar {
@@ -92,11 +121,12 @@
     
 
 body {
-    background-color: #010612;
+    background-color: var(--background);
+    color: var(--text);
 }
 
  header {
-    background-color: black ;
+     background-color: var(--primary);
     position: fixed;
     top: 0;
     z-index: 10000;
@@ -124,7 +154,9 @@ body {
 
     li {
       display: inline-block;
-      padding: 25px;
+      padding: 20px;
+      margin-right: 15px;
+      margin-top: 18px;
 
       a {
         text-align: center;
@@ -136,31 +168,35 @@ body {
         font-weight: 400;
         vertical-align: middle; 
       }
+button {
+    all: unset;
 
-      button {
-        all: unset; /* remove TUDO do botão */
-    
     display: inline-block;
     padding: 7px 14px;
-    
+    cursor: pointer;
+    border-radius: 6px;
+
     background-color: var(--primary);
     color: var(--text);
+
+    border: 1px solid var(--text);
+
+    box-shadow: 0 0 8px rgba(255,255,255,0.2);
+    transition: 0.2s;
     
-    cursor: pointer;
-    border-radius: 5px;
-    font-family: inherit;
-    background-color: #020d27;
-    border: 1px solid white;
-    color: white;
-        
-      }
-    }
+}
+
+button:hover {
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+    transform: scale(1.05);
+}
   }
+}
 }
  }
 
  main {
-    background-color: #010612;
+      background-color: var(--background);
     margin: auto;
     width: 96%;
     padding: 20px;
@@ -194,9 +230,48 @@ body {
         font-family: "VT323";
         font-size: 20px;
         font-weight: 300;
-        color: white;
+         color: var(--text);
     }
 #home {
+
+
+.input_area {
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+     button {
+        margin-top: 0;
+        font-family: "Press Start 2P";
+        background-color: var(--primary);
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        float: center;
+        margin: 0;
+    }
+    
+    #nomeUsuario {
+        margin-top: 0px;
+        font-family: "Press Start 2P";
+        background-color: var(--primary);
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+       float: center;
+    }
+
+}
+#mensagemUsuario {
+    font-family: "Press Start 2P";
+    text-align: center;
+    color: white;
+     margin-top: 20px;
+     margin-bottom: 80px;
+  font-size: 18px;
+}
+
+
     .grid_home {
         display: grid;
         grid-template-columns: 40% 60%;
@@ -209,12 +284,21 @@ body {
         text-align: justify;
         padding-left: 20px;
         padding-right: 20px;
+        h1 {
+            color: #00E0FF;
+            font-family: "Press Start 2P";
+            font-size: 14px;
+        }
+        .label {
+    color: #00E0FF; /* azul neon estilo game */
+    font-weight: bold;
+}
 
         .botao_home_jogar {
                 margin-top: 30px;
                 display: block;
                 border: 1px solid #00E5FF;
-                background-color: #04153e;
+                 background-color: var(--section-dark);
                 color: #00E5FF;
                 border-radius: 20px;
                 font-family: "Press Start 2P";
@@ -224,7 +308,7 @@ body {
                 text-decoration: none;
                 animation: piscar 1.5s infinite;
                  box-shadow: 0 0 10px #00E5FF,
-                0 0 20px #00E5FF,
+                0 0 20px #00e5ff,
                 0 0 40px #00E5
 }
 
@@ -238,7 +322,7 @@ body {
         margin: 15px;
         margin-left: 80px;
         text-align: center;
-        background-color: #020d27;
+        background-color: var(--section-dark);
         img {
             width: 100%;
             height: auto;
@@ -331,7 +415,6 @@ body {
     top: 0;
     left: 0;
     width: 96.5%;
-    max-width: 854px;
     height: 480px;
     padding: 2px;
     margin-top:  52px;
@@ -356,11 +439,12 @@ body {
                 border: 1px solid white;
                 border-radius: 10px;
                 width: 96.5%;
-                 max-width: 854px;
                 height: 480px;
                 border-radius: 10px;
                 padding: 2px ;
                 margin-left: 7px;
+            align-items: center;
+
 }
             }
 
@@ -509,7 +593,7 @@ body {
 
 
     #contatos {
-    background-color: #010612;
+    background-color: var(--background);
 
 
     .a_contatos_whatsapp {
@@ -532,10 +616,11 @@ body {
         .grid_contatos {
         display: grid;
         grid-template-columns: 50% 50%;
+        background-color: var(--background);
       
             .coluna {
                 border: 1px solid rgb(255, 255, 255);
-                background-color: #010612;
+                background-color: var(--background);
                 border-radius: 10px;
                 margin: 20px;
                 text-align: center;
@@ -570,7 +655,8 @@ body {
 }
 
 footer {
-    background-color: black;
+    background-color: var(--primary); /* fundo do footer */
+    color: var(--text); /* texto do footer */
     text-align: center;
     font-size: 40px;
     text-decoration: none;
@@ -590,6 +676,219 @@ footer {
         padding: 20px;
         color: white;
     }
+    button {
+        background-color: var(--primary);
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        float: right;
+        font-family: "Press Start 2P";
+        font-size: 10px;
+        text-align: center;
+        cursor: pointer;
+        .emoji {
+            font-size: 25px;
+        }
+    }
 }
 
-      
+
+@media (max-width: 768px) {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+  }
+
+  main, section, #home, #jogar, #contatos, footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 10px !important;
+  }
+
+  /* ================= HEADER ================= */
+  header {
+    position: fixed !important;
+    padding: 10px !important;
+    text-align: center;
+  }
+
+  header .a_fora_nav {
+    float: none !important;
+    display: block !important;
+    padding: 10px !important;
+    font-size: 28px !important;
+  }
+
+  header nav {
+    float: none !important;
+    display: block !important;
+    margin-top: 10px;
+  }
+
+  header nav ul {
+    padding: 0;
+  }
+
+  header nav ul li {
+    display: block !important;
+    margin: 5px 0 !important;
+    padding: 5px !important;
+  }
+
+  /* ================= REMOVE GRIDS ================= */
+  .grid_home,
+  .grid_jogar,
+  .grid_contatos {
+    display: block !important;
+  }
+
+  .grid_home > *,
+  .grid_jogar > *,
+  .grid_contatos > * {
+    width: 100% !important;
+    display: block !important;
+    float: none !important;
+  }
+
+  /* ================= COLUNAS ================= */
+  .coluna_home {
+    margin-top: 200px;
+  }
+
+  .coluna_home .coluna_imagemhome,
+  .coluna_home .coluna_controles,
+  .coluna_home .coluna_jogo,
+  .coluna_home .coluna_elementos {
+    width: 100% !important;
+    margin: 10px 0 !important;
+  }
+
+  /* ================= IMAGENS ================= */
+  .coluna_imagemhome {
+    margin: 0 !important;
+  }
+
+  .coluna_imagemhome img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ================= HOME ================= */
+  #home .input_area {
+    margin-top: 230px;
+    font-size: 15px;
+  }
+
+  #home .apresentacao h1 {
+    margin-top: -80px !important;
+  }
+
+  /* ================= JOGO ================= */
+  #jogar .grid_jogar .container_jogo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 854 / 480;
+    border: 2px solid #00E5FF;
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  #jogar .grid_jogar .container_jogo iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none !important;
+    outline: none;
+    box-shadow: none;
+    display: block;
+  }
+
+  /* ================= OVERLAY ================= */
+  #jogar .grid_jogar .container_jogo #overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+
+    z-index: 999;
+
+    border: none;
+    outline: none;
+    box-shadow: none;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  #jogar .grid_jogar .container_jogo #overlay h2 {
+    margin: 0;
+    border: none;
+  }
+
+  /* ================= ELEMENTOS ================= */
+  .dupla_principais,
+  .dupla_boss,
+  .dupla_especiais {
+    display: block !important;
+  }
+
+  /* ================= CONTATOS ================= */
+  #contatos .grid_contatos {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #contatos .grid_contatos .coluna {
+    margin: 10px 0 !important;
+    width: 100% !important;
+  }
+
+  /* ================= AJUSTES ================= */
+  .h2_home {
+    margin-top: 20px !important;
+  }
+
+  footer {
+    margin-bottom: 0 !important;
+    padding-bottom: 15px !important;
+  }
+
+  /* ================= SETA ================= */
+  .grid_seta_descer .coluna_seta {
+    text-align: right;
+    position: fixed;
+    bottom: 20px;
+    left: 95.7%;
+    font-size: 18px;
+    color: #00E5FF;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .grid_seta_descer .coluna_seta.sumir {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+}

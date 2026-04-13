@@ -33,7 +33,7 @@
     <li><a href="#sobre_o_jogo">Sobre o jogo</a></li>
     <li><a href="#jogar">Jogar</a></li>
     <li><a href="#contatos">Contatos</a></li>
-    <li><button onclick="trocarTema()">🌙 / ☀️</button></li>
+    <li><button onclick="trocarTema()" id="temaBtn">🌙</button></li>
   </ul>
 </nav>
 
@@ -43,20 +43,43 @@
 </header>
 
 <main>
-    <section id="home">
-        <h2 class="h2_home">Cideral War</h2>
-        <div class="grid_home">
-            <div class="coluna_home">
-    <p>O jogo Cideral War é um jogo minimalista, criado para quem busca praticidade. Você não precisa baixar aplicativos ou se preocupar com atualizações.</p>
-    <p>É direto, rápido e no estilo clássico dos arcade games: simples de jogar, mas desafiador de dominar. Prepare-se para a ação!</p>
-    <p>Um arcade retrô com pegadas modernas, trazendo a nostalgia dos clássicos, mas com a agilidade e fluidez que você espera hoje!</p>
-   <a class="botao_home_jogar" href="#jogar">Jogar agora!</a>
-            </div>
-            <div class="coluna_imagemhome">
-                    <img src="IMG/Captura de tela 2026-04-05 163005.png" alt="Tela do Jogo">
-                </div>
-        </div>
-    </section>
+   
+
+  <section id="home">
+   
+
+    <h2 class="h2_home">Cideral War</h2>
+
+<div class="input_area">
+  <input type="text" id="nomeUsuario" placeholder="Digite seu nome">
+  <button onclick="mostrarBoasVindas()">Entrar</button>
+  </div>
+  <div>
+  <p id="mensagemUsuario"></p>
+</div>
+    <div class="grid_home">
+
+      <div class="coluna_home">
+        <section id="apresentacao">
+          <h1>Apresentação do game:</h1>
+
+          <p id="nomeJogo"></p>
+          <p id="descricaoJogo"></p>
+          <p id="estiloJogo"></p>
+          <p id="generoJogo"></p>
+          <p id="criadorJogo"></p>
+
+          <a class="botao_home_jogar" href="#jogar">Jogar agora!</a>
+        </section>
+      </div>
+
+      <div class="coluna_imagemhome" id="imghome">
+        <img src="IMG/Captura de tela 2026-04-05 163005.png" alt="Tela do Jogo">
+      </div>
+
+    </div>
+  </section>
+
 
     <section id="sobre_o_jogo">
         <h2>Sobre o Jogo</h2>
@@ -107,17 +130,18 @@
 
     <div class="container_jogo">
         
-        <!-- Overlay clicável -->
-        <div id="overlay" onclick="iniciarJogo()">
-            <h2>🎮 Clique para Jogar</h2>
-        </div>
 
         <!-- Iframe -->
         <iframe 
             id="meuJogo"
-            src="https://cideralwar.netlify.app/"
+            src="https://matheusledo1703.github.io/CIDERAL-WAR/"
             allowfullscreen>
         </iframe>
+
+          <!-- Overlay clicável -->
+        <div id="overlay">
+            <h2>🎮 Clique para Jogar</h2>
+        </div>
 
     </div>
 </div>
@@ -184,21 +208,6 @@
             </div>
         </div>
 
-  <script id="m3d9c8">
-window.addEventListener("scroll", function() {
-    const seta = document.querySelector(".coluna_seta");
-
-    const scrollAtual = window.scrollY;
-    const alturaTela = window.innerHeight;
-    const alturaTotal = document.documentElement.scrollHeight;
-
-    if (scrollAtual + alturaTela >= alturaTotal - 10) {
-        seta.classList.add("sumir");
-    } else {
-        seta.classList.remove("sumir");
-    }
-});
-</script>
      </section>
      
 </main>
@@ -206,41 +215,214 @@ window.addEventListener("scroll", function() {
     <a href="https://www.instagram.com/matheusledo__/" target="_blank" class="footer_instagram"><i class="fa-brands fa-instagram"></i> </a>
     <a href="https://www.facebook.com/matheus.ledo.568/" target="_blank"  class="footer_facebook"><i class="fa-brands fa-facebook"></i></a>
     <a href="https://www.tiktok.com/@math_ledo" target="_blank" class="footer_tiktok"><i class="fa-brands fa-tiktok"></i></a>
+    <button onclick="refazerVerificacao()" class="btn_footer" id="btn_footer">
+  <span class="emoji">🔄</span>Age
+</button>
 </footer>
 
 <script>
-function iniciarJogo() {
-    let iframe = document.getElementById("meuJogo");
-    let overlay = document.getElementById("overlay");
+// ===============================
+// 🎮 CONTROLE DE IDADE
+// ===============================
+let idadeLiberada = false;
 
-    // entra em tela cheia
-    if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  verificarIdade();
 
-    // esconde overlay
-    overlay.style.display = "none";
-}
+  const overlay = document.getElementById("overlay");
 
-// 👇 DETECTA SAÍDA DO FULLSCREEN (ESC)
-document.addEventListener("fullscreenchange", function() {
-    if (!document.fullscreenElement) {
-        resetarJogo();
-    }
+  if (overlay) {
+    overlay.addEventListener("click", iniciarJogo);
+    overlay.addEventListener("touchstart", iniciarJogo);
+  }
+
+  const erro = document.getElementById("erroAcesso");
+  if (erro) erro.style.display = "none";
 });
 
-// 👇 FUNÇÃO DE RESET
-function resetarJogo() {
-    let iframe = document.getElementById("meuJogo");
-    let overlay = document.getElementById("overlay");
+// ===============================
+// 🎮 VERIFICAR IDADE
+// ===============================
+function verificarIdade() {
+  const idade = Number(prompt("Digite sua idade:"));
 
-    // reinicia o iframe (recarrega o jogo)
-    iframe.src = iframe.src;
+  const iframe = document.getElementById("meuJogo");
+  const imghome = document.getElementById("imghome");
 
-    // mostra novamente a tela inicial
-    overlay.style.display = "flex";
+  if (!iframe || !imghome) return;
+
+  if (idade >= 12) {
+    idadeLiberada = true;
+
+    iframe.style.filter = "none";
+    iframe.style.pointerEvents = "auto";
+    imghome.style.filter = "none";
+
+    alert("✅ Acesso autorizado!");
+  } else {
+    idadeLiberada = false;
+
+    iframe.style.filter = "blur(20px)";
+    iframe.style.pointerEvents = "none";
+    imghome.style.filter = "blur(20px)";
+
+    alert("⛔ Acesso negado! Você não pode jogar.");
+  }
 }
+
+// botão footer
+function refazerVerificacao() {
+  verificarIdade();
+}
+
+// ===============================
+// 🎮 INICIAR JOGO
+// ===============================
+function iniciarJogo(e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  if (!idadeLiberada) {
+    alert("⛔ Acesso negado! Você não pode jogar.");
+    return;
+  }
+
+  const iframe = document.getElementById("meuJogo");
+  const overlay = document.getElementById("overlay");
+
+  if (!iframe || !overlay) return;
+
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  }
+
+  overlay.style.display = "none";
+}
+
+// ===============================
+// 🔁 RESET FULLSCREEN
+// ===============================
+document.addEventListener("fullscreenchange", function() {
+  if (!document.fullscreenElement) {
+    resetarJogo();
+  }
+});
+
+function resetarJogo() {
+  const iframe = document.getElementById("meuJogo");
+  const overlay = document.getElementById("overlay");
+
+  if (!iframe || !overlay) return;
+
+  iframe.src = iframe.src;
+  overlay.style.display = "flex";
+}
+
+// ===============================
+// 🌙 TEMA
+// ===============================
+(function () {
+  const tema = localStorage.getItem("tema");
+  if (tema === "dark") {
+    document.documentElement.classList.add("dark-mode-start");
+  }
+})();
+
+window.onload = function () {
+  const btn = document.getElementById("temaBtn");
+  const tema = localStorage.getItem("tema");
+
+  if (!btn) return;
+
+  if (tema === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "🌙";
+  } else {
+    document.body.classList.remove("dark");
+    btn.textContent = "☀️";
+  }
+};
+
+function trocarTema() {
+  document.body.classList.toggle("dark");
+
+  const btn = document.getElementById("temaBtn");
+  if (!btn) return;
+
+  if (document.body.classList.contains("dark")) {
+    btn.textContent = "🌙";
+    localStorage.setItem("tema", "dark");
+  } else {
+    btn.textContent = "☀️";
+    localStorage.setItem("tema", "light");
+  }
+}
+
+// ===============================
+// 🧠 DADOS DO JOGO
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+  const set = (id, texto) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = texto;
+  };
+
+  const nome = "Cideral War";
+
+const descricao = "Um jogo minimalista, criado para quem busca praticidade. Você não precisa baixar aplicativos ou se preocupar com atualizações. É direto e rápido.";
+
+const estilo = "Inspirado no estilo clássico dos arcade games: simples de jogar, mas desafiador de dominar. Um arcade retrô com pegadas modernas, trazendo nostalgia com agilidade e fluidez.";
+
+const genero = "Ação - Tiro";
+
+const criador = "Criado por Matheus Ledo";
+
+  set("nomeJogo", "<span class='label'>Nome:</span> Cideral War");
+  set("descricaoJogo", "<span class='label'>Descrição:</span> Um jogo minimalista.");
+  set("estiloJogo", "<span class='label'>Estilo:</span> Arcade retrô.");
+  set("generoJogo", "<span class='label'>Gênero:</span> Ação - Tiro");
+  set("criadorJogo", "<span class='label'>Criador:</span> Matheus Ledo");
+});
+
+// ===============================
+// 👤 USUÁRIO
+// ===============================
+function mostrarBoasVindas() {
+  let nome = document.getElementById("nomeUsuario").value;
+  let msg = document.getElementById("mensagemUsuario");
+
+  if (!msg) return;
+
+  msg.innerText = nome.trim() === ""
+    ? "Digite seu nome!"
+    : "Seja bem-vindo, " + nome + "!";
+}
+
+// ===============================
+// 🔥 LANÇAMENTO
+// ===============================
+window.addEventListener("load", function() {
+  if (new Date().getFullYear() === 2026) {
+    alert("🔥 Grande Lançamento de Cideral War!");
+  }
+});
+
+// ===============================
+// ⬇️ SETA
+// ===============================
+window.addEventListener("scroll", function() {
+  const seta = document.querySelector(".coluna_seta");
+  if (!seta) return;
+
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 10) {
+    seta.classList.add("sumir");
+  } else {
+    seta.classList.remove("sumir");
+  }
+});
 </script>
 
 </body>
-</html>                          
+</html>
